@@ -2,7 +2,6 @@ package com.mprog.service;
 
 import com.mprog.database.model.Clan;
 import com.mprog.database.model.GoldStatistics;
-import com.mprog.database.model.User;
 import com.mprog.service.clan.ClanService;
 
 public class UserAddGoldService {

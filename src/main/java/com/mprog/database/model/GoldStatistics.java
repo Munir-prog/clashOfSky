@@ -2,7 +2,7 @@ package com.mprog.database.model;
 
 public class GoldStatistics {
 
-    private static int idCounter = 1;
+    private static long idCounter = 1;
 
     private long id;
     private User user;
@@ -13,16 +13,22 @@ public class GoldStatistics {
     // if gold was added from users money
     private boolean fromUsersBag;
 
-//    Успешное пополнение
+    //    Успешное пополнение
     private boolean successReplenish;
 
     public GoldStatistics(User user, int goldAmount, Task task, boolean fromUsersBag, boolean successReplenish) {
-        this.id = idCounter++;
+        this.id = getCounter();
         this.user = user;
         this.goldAmount = goldAmount;
         this.task = task;
         this.fromUsersBag = fromUsersBag;
         this.successReplenish = successReplenish;
+    }
+
+    private static long getCounter() {
+        synchronized (GoldStatistics.class) {
+            return idCounter++;
+        }
     }
 
     public long getId() {
