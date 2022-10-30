@@ -3,6 +3,8 @@ package com.mprog.service;
 import com.mprog.database.model.Clan;
 import com.mprog.database.model.GoldStatistics;
 import com.mprog.database.model.Task;
+import com.mprog.dto.UserDto;
+import com.mprog.mapper.UserMapper;
 import com.mprog.service.clan.ClanService;
 
 import java.util.ArrayList;
@@ -13,6 +15,7 @@ public class TaskService {
     private final ClanService clans;
     private final List<Task> tasks;
     private final UserService userService;
+    private final UserMapper userMapper;
 
 
     public TaskService(ClanService clans) {
@@ -22,6 +25,7 @@ public class TaskService {
         tasks.add(new Task(2, "DoRob", 8));
         tasks.add(new Task(3, "DoAgronomy", 14));
         userService = UserService.getInstance();
+        userMapper = UserMapper.getInstance();
     }
 
     public void completeTask(long clanId, long taskId, long userId) {
@@ -34,7 +38,13 @@ public class TaskService {
         var award = task.doTaskAndGetAward();
 
         Clan clan = clans.getClan(clanId);
-        clan.setGold(clan.getGold() + award);
-        clan.setGoldStatistics(new GoldStatistics(user, award, task, false, true));
+        clan.addGold(award);
+        clan.setGoldStatistics(new GoldStatistics(
+                userMapper.entityToDto(user),
+                award,
+                task,
+                false,
+                true
+        ));
     }
 }

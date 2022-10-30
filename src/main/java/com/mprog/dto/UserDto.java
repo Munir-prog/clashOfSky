@@ -1,14 +1,15 @@
-package com.mprog.database.model;
+package com.mprog.dto;
 
 import com.mprog.util.RandomUtils;
 
-public class User {
+public class UserDto {
+
 
     private long id;
     private String name;
     private int money;
 
-    public User(long id, String name, int money) {
+    public UserDto(long id, String name, int money) {
         this.id = id;
         this.name = name;
         this.money = money;
@@ -38,19 +39,6 @@ public class User {
         this.money = money;
     }
 
-    public synchronized int getSomeMoneyForClan() {
-        if (money != 0) {
-            int moneyToReturn;
-            if (money > 10) {
-                moneyToReturn = RandomUtils.getRandom().nextInt(10) + 1;
-            } else {
-                moneyToReturn = RandomUtils.getRandom().nextInt(money) + 1;
-            }
-            money = money - moneyToReturn;
-            return moneyToReturn;
-        }
-        return 0;
-    }
 
     @Override
     public String toString() {

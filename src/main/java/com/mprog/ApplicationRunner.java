@@ -32,7 +32,7 @@ public class ApplicationRunner {
         var fightArenaService = new FightArenaService(clanService);
 
 //        Запускаю 200 потоков где в каждом потоке рандомно выбирается сервис и юзер и пополняется казна клана
-        for (int i = 0; i < 200; i++) {
+        for (int i = 0; i < 150; i++) {
             var userId = RandomUtils.getRandom().nextInt(10) + 1;
             var clanThread = new ClanThread(
                     taskService, userAddGoldService,

@@ -1,11 +1,13 @@
 package com.mprog.database.model;
 
+import com.mprog.dto.UserDto;
+
 public class GoldStatistics {
 
     private static long idCounter = 1;
 
     private long id;
-    private User user;
+    private UserDto user;
     private int goldAmount;
     // if gold was added by doing some task
     private Task task;
@@ -16,7 +18,7 @@ public class GoldStatistics {
     //    Успешное пополнение
     private boolean successReplenish;
 
-    public GoldStatistics(User user, int goldAmount, Task task, boolean fromUsersBag, boolean successReplenish) {
+    public GoldStatistics(UserDto user, int goldAmount, Task task, boolean fromUsersBag, boolean successReplenish) {
         this.id = getCounter();
         this.user = user;
         this.goldAmount = goldAmount;
@@ -39,11 +41,11 @@ public class GoldStatistics {
         this.id = id;
     }
 
-    public User getUser() {
+    public UserDto getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserDto user) {
         this.user = user;
     }
 

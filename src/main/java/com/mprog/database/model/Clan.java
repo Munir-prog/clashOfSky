@@ -29,14 +29,16 @@ public class Clan {
         return name;
     }
 
-    public  int getGold() {
+    public int getGold() {
         return gold;
     }
 
-    public  void setGoldStatistics(GoldStatistics goldStatistics) {
-        synchronized (this) {
-            this.goldStatistics.add(goldStatistics);
-        }
+    public synchronized void addGold(int gold) {
+        this.gold = this.gold + gold;
+    }
+
+    public synchronized void setGoldStatistics(GoldStatistics goldStatistics) {
+        this.goldStatistics.add(goldStatistics);
     }
 
     public void setId(long id) {
@@ -47,9 +49,7 @@ public class Clan {
         this.name = name;
     }
 
-    public  void setGold(int gold) {
-        synchronized (this) {
-            this.gold = gold;
-        }
+    public void setGold(int gold) {
+        this.gold = gold;
     }
 }
