@@ -23,6 +23,8 @@ public class UserAddGoldService {
         boolean success = amountToClan != 0;
         clan.setGoldStatistics(new GoldStatistics(
                 UserMapper.entityToDto(user),
+                clan.getGold(),
+                true,
                 amountToClan,
                 null,
                 true,

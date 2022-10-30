@@ -22,9 +22,11 @@ public class FightArenaService {
         var award = fightAndGetMoney(user);
         Clan clan = clans.getClan(clanId);
         clan.addGold(award);
-        boolean success = award != 0;
+        boolean success = award > 0;
         clan.setGoldStatistics(new GoldStatistics(
                 UserMapper.entityToDto(user),
+                clan.getGold(),
+                true,
                 award,
                 null,
                 false,
@@ -40,7 +42,8 @@ public class FightArenaService {
         } else if (user.getHealth() > 9) {
             healthLose = RandomUtils.getRandom().nextInt(8) + 3;
         } else {
-            return 0;
+//            money for hospital =)
+            return -10;
         }
         user.loseHealth(healthLose);
         var health = user.getHealth();

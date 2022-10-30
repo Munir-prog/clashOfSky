@@ -36,12 +36,14 @@ public class TaskService {
 
         var award = task.doTaskAndGetAward();
 
-        boolean success = award != 0;
+        boolean success = award > 0;
 
         Clan clan = clans.getClan(clanId);
         clan.addGold(award);
         clan.setGoldStatistics(new GoldStatistics(
                 UserMapper.entityToDto(user),
+                clan.getGold(),
+                true,
                 award,
                 task,
                 false,

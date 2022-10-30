@@ -21,7 +21,7 @@ public class Task {
         if (result == 1)
             return getTaskSalary();
         else
-            return 0;
+            return -10;
     }
 
     public long getId() {

@@ -7,8 +7,16 @@ public class GoldStatistics {
     private static long idCounter = 1;
 
     private long id;
+
     private UserDto user;
+
     private int goldAmount;
+
+    //    пополнение или снятие денег
+    private boolean replenish;
+
+    private int clanGoldAmount;
+
     // if gold was added by doing some task
     private Task task;
 
@@ -21,7 +29,9 @@ public class GoldStatistics {
     //    Успешное пополнение
     private boolean successReplenish;
 
-    public GoldStatistics(UserDto user, int goldAmount, Task task, boolean fromUsersBag, boolean fromArena, boolean successReplenish) {
+    public GoldStatistics(UserDto user, int clanGoldAmount, boolean replenish,
+                          int goldAmount, Task task, boolean fromUsersBag,
+                          boolean fromArena, boolean successReplenish) {
         this.fromArena = fromArena;
         this.id = getCounter();
         this.user = user;
@@ -29,6 +39,24 @@ public class GoldStatistics {
         this.task = task;
         this.fromUsersBag = fromUsersBag;
         this.successReplenish = successReplenish;
+        this.clanGoldAmount = clanGoldAmount;
+        this.replenish = replenish;
+    }
+
+    public boolean isReplenish() {
+        return replenish;
+    }
+
+    public void setReplenish(boolean replenish) {
+        this.replenish = replenish;
+    }
+
+    public int getClanGoldAmount() {
+        return clanGoldAmount;
+    }
+
+    public void setClanGoldAmount(int clanGoldAmount) {
+        this.clanGoldAmount = clanGoldAmount;
     }
 
     public boolean isFromArena() {
@@ -107,6 +135,8 @@ public class GoldStatistics {
                 "id=" + id +
                 ", user=" + user +
                 ", goldAmount=" + goldAmount +
+                ", replenish=" + replenish +
+                ", clanGoldAmount=" + clanGoldAmount +
                 ", task=" + task +
                 ", fromUsersBag=" + fromUsersBag +
                 ", fromArena=" + fromArena +
