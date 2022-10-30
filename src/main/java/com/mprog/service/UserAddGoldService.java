@@ -9,12 +9,10 @@ public class UserAddGoldService {
 
     private final ClanService clans;
     private final UserService userService;
-    private final UserMapper userMapper;
 
     public UserAddGoldService(ClanService clans) {
         this.clans = clans;
         userService = UserService.getInstance();
-        userMapper = UserMapper.getInstance();
     }
 
     public void addGoldToClan(long userId, long clanId) {
@@ -24,10 +22,11 @@ public class UserAddGoldService {
         clan.addGold(amountToClan);
         boolean success = amountToClan != 0;
         clan.setGoldStatistics(new GoldStatistics(
-                userMapper.entityToDto(user),
+                UserMapper.entityToDto(user),
                 amountToClan,
                 null,
                 true,
+                false,
                 success
         ));
     }

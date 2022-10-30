@@ -1,34 +1,35 @@
 package com.mprog.thread;
 
-import com.mprog.database.model.User;
 import com.mprog.service.FightArenaService;
 import com.mprog.service.TaskService;
 import com.mprog.service.UserAddGoldService;
 import com.mprog.util.RandomUtils;
 
 
-public class ClanThread extends Thread{
+public class ClanThread extends Thread {
 
+    private static final int DEFAULT_CLAN_ID = 1;
     private final TaskService taskService;
     private final UserAddGoldService userAddGoldService;
     private final FightArenaService fightArenaService;
-    private final User user;
+    private final Long userId;
 
-    public ClanThread(TaskService taskService, UserAddGoldService userAddGoldService, FightArenaService fightArenaService, User user) {
+    public ClanThread(TaskService taskService, UserAddGoldService userAddGoldService, FightArenaService fightArenaService, Long userId) {
         this.taskService = taskService;
         this.userAddGoldService = userAddGoldService;
         this.fightArenaService = fightArenaService;
-        this.user = user;
+        this.userId = userId;
     }
 
     @Override
     public void run() {
-        var serviceId = RandomUtils.getRandom().nextInt(2) + 1;
+        var serviceId = RandomUtils.getRandom().nextInt(3) + 1;
         if (serviceId == 1) {
-            var taskId = RandomUtils.getRandom().nextInt(3) + 1;
-            taskService.completeTask(1, taskId, user.getId());
+            taskService.completeTask(DEFAULT_CLAN_ID, userId);
+        } else if (serviceId == 2) {
+            userAddGoldService.addGoldToClan(userId, DEFAULT_CLAN_ID);
         } else {
-            userAddGoldService.addGoldToClan(user.getId(), 1);
+            fightArenaService.fightForClanGlory(userId, DEFAULT_CLAN_ID);
         }
     }
 }

@@ -5,20 +5,16 @@ import com.mprog.dto.UserDto;
 
 public class UserMapper {
 
-    private final static UserMapper instance = new UserMapper();
-
     private UserMapper () {
+        throw  new RuntimeException("no!");
     }
 
-    public UserDto entityToDto(User user) {
+    public static UserDto entityToDto(User user) {
         return new UserDto(
                 user.getId(),
                 user.getName(),
-                user.getMoney()
-        );
+                user.getMoney(),
+                user.getHealth());
     }
 
-    public static UserMapper getInstance() {
-        return instance;
-    }
 }

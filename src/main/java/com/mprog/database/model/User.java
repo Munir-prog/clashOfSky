@@ -7,11 +7,21 @@ public class User {
     private long id;
     private String name;
     private int money;
+    private int health;
 
-    public User(long id, String name, int money) {
+    public User(long id, String name, int money, int health) {
         this.id = id;
         this.name = name;
         this.money = money;
+        this.health = health;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
     }
 
     public long getId() {
@@ -59,5 +69,9 @@ public class User {
                 ", name='" + name + '\'' +
                 ", money=" + money +
                 '}';
+    }
+
+    public synchronized void loseHealth(int healthLose) {
+        health = health - healthLose;
     }
 }

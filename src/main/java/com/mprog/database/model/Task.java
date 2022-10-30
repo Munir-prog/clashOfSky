@@ -1,5 +1,9 @@
 package com.mprog.database.model;
 
+import com.mprog.util.RandomUtils;
+
+import java.util.Random;
+
 public class Task {
 
     private final long id;
@@ -13,7 +17,11 @@ public class Task {
     }
 
     public int doTaskAndGetAward() {
-        return getTaskSalary();
+        var result = RandomUtils.getRandom().nextInt(2) + 1;
+        if (result == 1)
+            return getTaskSalary();
+        else
+            return 0;
     }
 
     public long getId() {

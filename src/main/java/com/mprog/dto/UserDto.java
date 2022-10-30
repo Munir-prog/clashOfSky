@@ -1,18 +1,26 @@
 package com.mprog.dto;
 
-import com.mprog.util.RandomUtils;
-
 public class UserDto {
 
 
     private long id;
     private String name;
     private int money;
+    private int health;
 
-    public UserDto(long id, String name, int money) {
+    public UserDto(long id, String name, int money, int health) {
         this.id = id;
         this.name = name;
         this.money = money;
+        this.health = health;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
     }
 
     public long getId() {
@@ -42,10 +50,11 @@ public class UserDto {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserDto{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", money=" + money +
+                ", health=" + health +
                 '}';
     }
 }
