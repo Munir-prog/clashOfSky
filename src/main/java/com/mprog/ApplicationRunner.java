@@ -50,9 +50,11 @@ public class ApplicationRunner {
 //        В конце после выполнения потоков из статистики клана высчитывается сумма внесенных денег и сравнивается с казной.
         int totalIncomeGold = 0;
         var clan = clanService.getClan(1);
+//        считаем сумму золота из статистики
         for (GoldStatistics goldStatistic : clan.getGoldStatistics()) {
             totalIncomeGold += goldStatistic.getGoldAmount();
         }
+//        выводим статистику
         clan.getGoldStatistics().forEach(System.out::println);
         System.out.println("statistics size:" + clan.getGoldStatistics().size());
         System.out.println("total income:" + totalIncomeGold);
